@@ -4,7 +4,7 @@ import com.kafka_order_processing.orderskafka.dto.OrderItemDTO;
 import com.kafka_order_processing.orderskafka.dto.OrderRequest;
 import com.kafka_order_processing.orderskafka.kafka.OrderProducer;
 import com.kafka_order_processing.orderskafka.model.Order;
-import com.kafka_order_processing.orderskafka.model.Order.OrderItem;
+import com.kafka_order_processing.orderskafka.model.OrderItem;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,22 +20,23 @@ public class OrderService {
         this.producer = producer;
     }
 
-    public Order createOrder(OrderRequest request) {
+    public Order processNewOrder(OrderRequest request) {
         Order order = new Order();
         order.setOrderId(UUID.randomUUID().toString());
         order.setCustomerName(request.getCustomerName());
         order.setTimestamp(System.currentTimeMillis());
 
-        List<OrderItem> items = request.getItems().stream().map(dto -> {
-            OrderItem item = new OrderItem();
-            item.setProductId(dto.getProductId());
-            item.setQuantity(dto.getQuantity());
-            return item;
-        }).collect(Collectors.toList());
-
-        order.setItems(items);
+        List<OrderItem> itemList = request.getItems().stream().map(this::convertToItem).collect(Collectors.toList());
+        order.setItems(itemList);
 
         producer.sendOrder(order);
         return order;
+    }
+
+    private OrderItem convertToItem(OrderItemDTO dto) {
+        OrderItem item = new OrderItem();
+        item.setProductId(dto.getProductId());
+        item.setQuantity(dto.getQuantity());
+        return item;
     }
 }

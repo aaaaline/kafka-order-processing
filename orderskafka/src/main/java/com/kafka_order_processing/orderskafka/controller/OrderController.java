@@ -17,8 +17,13 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody OrderRequest request) {
-        Order order = service.createOrder(request);
-        return ResponseEntity.ok(order);
+    public ResponseEntity<Order> registerOrder(@RequestBody OrderRequest request) {
+        Order createdOrder = service.processNewOrder(request);
+        return ResponseEntity.ok(createdOrder);
+    }
+
+    @GetMapping("/ping")
+    public ResponseEntity<String> status() {
+        return ResponseEntity.ok("Serviço de pedidos operacional.");
     }
 }

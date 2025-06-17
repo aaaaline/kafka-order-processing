@@ -16,6 +16,6 @@ public class OrderProducer {
 
     public void sendOrder(Order order) {
         kafkaTemplate.send(TOPIC, order.getOrderId(), order);
+        System.out.println("📦 Pedido enviado ao Kafka: " + order.getOrderId());
     }
 }
-
