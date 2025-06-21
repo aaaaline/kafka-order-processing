@@ -11,9 +11,7 @@ import com.kafka_order_processing.orderskafka.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -31,14 +29,11 @@ public class OrderService {
     @Transactional
     public Order processNewOrder(OrderRequest request) {
         Order order = new Order();
-        order.setOrderId(UUID.randomUUID().toString());
         order.setCustomerName(request.getCustomerName());
-        order.setTimestamp(System.currentTimeMillis());
 
-        List<OrderItem> itemList = request.getItems().stream()
-                .map(this::createOrderItemFromDto)
-                .collect(Collectors.toList());
-        order.setItems(itemList);
+        request.getItems().stream()
+                .map(dto -> createOrderItemFromDto(dto, order))
+                .forEach(order::addItem);
 
         Order savedOrder = orderRepository.save(order);
 
@@ -46,16 +41,17 @@ public class OrderService {
         return savedOrder;
     }
 
-    private OrderItem createOrderItemFromDto(OrderItemDTO dto) {
-        UUID productId = UUID.fromString(dto.getProductId());
-        Product product = productRepository.findById(productId)
+    private OrderItem createOrderItemFromDto(OrderItemDTO dto, Order order) {
+        UUID productIdAsUUID = UUID.fromString(dto.getProductId());
+        Product product = productRepository.findById(productIdAsUUID)
                 .orElseThrow(() -> new IllegalArgumentException("Product not found with ID: " + dto.getProductId()));
 
         OrderItem item = new OrderItem();
-        item.setProductId(dto.getProductId());
+        item.setProductId(productIdAsUUID);
         item.setProductName(product.getName());
         item.setQuantity(dto.getQuantity());
         item.setUnitPrice(product.getPrice());
+        item.setOrder(order);
         return item;
     }
 }

@@ -29,6 +29,6 @@ public class ProductController {
     @GetMapping // Mapeia este método para requisições GET para /products
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productRepository.findAll();
-        return ResponseEntity.ok(products); 
+        return ResponseEntity.ok(products);
     }
 }
