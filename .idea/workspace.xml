@@ -4,81 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f4db9f4-0677-4872-9141-dd67a0012f87" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/orderskafka/src/main/java/com/kafka_order_processing/orderskafka/model/Order.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orderskafka/src/main/java/com/kafka_order_processing/orderskafka/model/OrderItem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orderskafka/src/main/java/com/kafka_order_processing/orderskafka/model/Product.java" beforeDir="false" />
-    </list>
+    <list default="true" id="f38bfdf7-dd19-4cfd-bc75-5dbe923372b8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
 }]]></component>
-  <component name="ProjectId" id="2yqAlINgzJe5F0yNByeMki9mBSf" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2yqKZGn8QehspcOYbYRl3ZsRxNx" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "aline",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/aline/OneDrive/Documentos/UFG/2025.1/Software Concorrente e Distribuído/kafka-order-processing/notification-service/src/main/java/com/kafka_order_processing/notificationservice/dto&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunDashboard">
-    <option name="configurationTypes">
-      <set>
-        <option value="KtorApplicationConfigurationType" />
-        <option value="MicronautRunConfigurationType" />
-        <option value="QuarkusRunConfigurationType" />
-        <option value="SpringBootApplicationConfigurationType" />
-      </set>
-    </option>
-  </component>
-  <component name="RunManager" selected="Spring Boot.OrderskafkaApplication">
-    <configuration name="InventoryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="inventory-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kafka_order_processing.inventoryservice.InventoryServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="notification-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kafka_order_processing.notificationservice.NotificationServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OrderskafkaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="orderskafka" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kafka_order_processing.orderskafka.OrderskafkaApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\aline\OneDrive\Documentos\UFG\2025.1\Software Concorrente e Distribuído\kafka-order-processing\notification-service\src\main\java\com\kafka_order_processing\notificationservice\dto" />
+      <recent name="C:\Users\aline\OneDrive\Documentos\UFG\2025.1\Software Concorrente e Distribuído\kafka-order-processing\inventory-service\src\main\java\com\kafka_order_processing\inventoryservice\repository" />
+      <recent name="C:\Users\aline\OneDrive\Documentos\UFG\2025.1\Software Concorrente e Distribuído\kafka-order-processing\inventory-service\src\main\java\com\kafka_order_processing\inventoryservice\model" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -90,12 +52,14 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3f4db9f4-0677-4872-9141-dd67a0012f87" name="Changes" comment="" />
-      <created>1750551879798</created>
+      <changelist id="f38bfdf7-dd19-4cfd-bc75-5dbe923372b8" name="Changes" comment="" />
+      <created>1750556717859</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1750551879798</updated>
-      <workItem from="1750551882512" duration="248000" />
+      <updated>1750556717859</updated>
+      <workItem from="1750556720686" duration="1253000" />
+      <workItem from="1750557995176" duration="49000" />
+      <workItem from="1750602093086" duration="217000" />
     </task>
     <servers />
   </component>

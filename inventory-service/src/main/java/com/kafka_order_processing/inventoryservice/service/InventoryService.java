@@ -2,14 +2,12 @@ package com.kafka_order_processing.inventoryservice.service;
 
 import com.kafka_order_processing.inventoryservice.dto.InventoryEventDTO;
 import com.kafka_order_processing.inventoryservice.kafka.InventoryEventProducer;
-import com.kafka_order_processing.orderskafka.model.Order;
-import com.kafka_order_processing.orderskafka.model.OrderItem;
-import com.kafka_order_processing.orderskafka.model.Product;
-import com.kafka_order_processing.orderskafka.repository.ProductRepository;
+import com.kafka_order_processing.inventoryservice.model.Order;
+import com.kafka_order_processing.inventoryservice.model.OrderItem;
+import com.kafka_order_processing.inventoryservice.model.Product;
+import com.kafka_order_processing.inventoryservice.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class InventoryService {
@@ -24,34 +22,43 @@ public class InventoryService {
 
     @Transactional
     public void processOrderInventory(Order order) {
+        System.out.println("📦 Pedido recebido para processar inventário: " + order.getOrderId());
         try {
+            if (order.getItems() == null || order.getItems().isEmpty()) {
+                throw new IllegalArgumentException("O pedido não contém itens.");
+            }
+
             for (OrderItem item : order.getItems()) {
-                Optional<Product> productOpt = productRepository.findById(item.getProductId());
+                Product product = productRepository.findById(item.getProductId())
+                        .orElseThrow(() -> new IllegalStateException("Produto " + item.getProductId() + " não encontrado."));
 
-                if (productOpt.isEmpty()) {
-                    throw new IllegalStateException("Produto com ID " + item.getProductId() + " não encontrado.");
-                }
-
-                Product product = productOpt.get();
                 if (product.getQuantity() < item.getQuantity()) {
                     throw new IllegalStateException("Estoque insuficiente para o produto: " + product.getName());
                 }
 
-                // Deduz a quantidade do estoque
                 product.setQuantity(product.getQuantity() - item.getQuantity());
                 productRepository.save(product);
             }
 
-            // Se tudo correu bem, publica um evento de sucesso
-            InventoryEventDTO successEvent = new InventoryEventDTO(order.getOrderId(), InventoryEventDTO.InventoryStatus.SUCCESS, "Estoque reservado com sucesso.");
+            InventoryEventDTO successEvent = new InventoryEventDTO(
+                    order.getOrderId(),
+                    order.getCustomerName(),
+                    InventoryEventDTO.Status.SUCCESS,
+                    "Pedido processado e estoque reservado com sucesso."
+            );
             inventoryEventProducer.sendInventoryEvent(successEvent);
 
-        } catch (IllegalStateException e) {
-            // Se falhou (e.g., sem estoque), publica um evento de falha
-            System.err.println("Falha ao processar o inventário para o pedido " + order.getOrderId() + ": " + e.getMessage());
-            InventoryEventDTO failureEvent = new InventoryEventDTO(order.getOrderId(), InventoryEventDTO.InventoryStatus.FAILURE_OUT_OF_STOCK, e.getMessage());
+        } catch (Exception e) { // Captura qualquer erro
+            System.err.println("!!! ERRO INESPERADO ao processar o pedido " + order.getOrderId() + " !!!");
+            e.printStackTrace(); // Imprime o erro completo no log
+
+            InventoryEventDTO failureEvent = new InventoryEventDTO(
+                    order.getOrderId(),
+                    order.getCustomerName(),
+                    InventoryEventDTO.Status.FAILURE,
+                    "Erro inesperado no processamento: " + e.getMessage()
+            );
             inventoryEventProducer.sendInventoryEvent(failureEvent);
-            // A anotação @Transactional garantirá o rollback das alterações no estoque.
         }
     }
 }

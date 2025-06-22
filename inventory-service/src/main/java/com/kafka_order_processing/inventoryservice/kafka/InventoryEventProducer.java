@@ -7,15 +7,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class InventoryEventProducer {
 
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final KafkaTemplate<String, InventoryEventDTO> kafkaTemplate;
     private static final String TOPIC = "inventory-events";
 
-    public InventoryEventProducer(KafkaTemplate<String, Object> kafkaTemplate) {
+    public InventoryEventProducer(KafkaTemplate<String, InventoryEventDTO> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
     public void sendInventoryEvent(InventoryEventDTO event) {
-        kafkaTemplate.send(TOPIC, event.getOrderId().toString(), event);
-        System.out.println("✅ Evento de inventário enviado para o pedido: " + event.getOrderId() + " com status: " + event.getStatus());
+        kafkaTemplate.send(TOPIC, event.orderId().toString(), event);
+        System.out.println("✅ Evento de inventário enviado: " + event.orderId() + " Status: " + event.status());
     }
 }
