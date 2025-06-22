@@ -3,14 +3,13 @@ package com.kafka_order_processing.notificationservice.controller;
 import com.kafka_order_processing.notificationservice.dto.InventoryEventDTO;
 import com.kafka_order_processing.notificationservice.kafka.NotificationConsumer;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin; // NOVO IMPORT
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/notifications")
-// Permite requisições do seu frontend. Ajuste a porta se o seu frontend rodar em outra.
 @CrossOrigin(origins = "http://localhost:5173")
 public class NotificationController {
 
@@ -31,7 +30,7 @@ public class NotificationController {
         if (latestEvent != null) {
             return ResponseEntity.ok(latestEvent);
         } else {
-            return ResponseEntity.noContent().build(); // Retorna 204 se não houver notificação
+            return ResponseEntity.noContent().build();
         }
     }
 }

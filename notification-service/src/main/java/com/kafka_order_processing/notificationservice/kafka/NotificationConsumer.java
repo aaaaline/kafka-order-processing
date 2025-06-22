@@ -4,12 +4,11 @@ import com.kafka_order_processing.notificationservice.dto.InventoryEventDTO;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.atomic.AtomicReference; // NOVO IMPORT
+import java.util.concurrent.atomic.AtomicReference;
 
 @Component
 public class NotificationConsumer {
 
-    // Armazena a última notificação processada. AtomicReference é thread-safe.
     private final AtomicReference<InventoryEventDTO> latestEvent = new AtomicReference<>();
 
     @KafkaListener(topics = "inventory-events", groupId = "notification_group")
@@ -27,11 +26,9 @@ public class NotificationConsumer {
         }
         System.out.println("==============================================");
 
-        // Atualiza a última notificação recebida
         latestEvent.set(event);
     }
 
-    // Método para o Controller acessar a última notificação
     public InventoryEventDTO getLatestEvent() {
         return latestEvent.get();
     }
