@@ -1,6 +1,7 @@
 import React from 'react';
-import { Layout, Typography } from 'antd';
+import { Layout, Typography, Space } from 'antd';
 import OrderForm from './components/OrderForm';
+import NotificationDisplay from './components/NotificationDisplay';
 import './App.css';
 
 const { Header, Content, Footer } = Layout;
@@ -14,8 +15,11 @@ function App() {
           Pedidos Kafka
         </Title>
       </Header>
-      <Content style={{ padding: '50px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
-        <OrderForm />
+      <Content style={{ padding: '50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Space direction="vertical" size={30} style={{ width: '100%', maxWidth: '600px' }}>
+          <OrderForm />
+          <NotificationDisplay />
+        </Space>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
         Sistema de Pedidos Kafka ©{new Date().getFullYear()}
