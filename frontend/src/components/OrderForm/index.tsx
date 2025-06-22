@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Card, Space, Typography, InputNumber, Popconfirm, notification } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
-import ProductSearchSelect from '../ProductSearchSelect/index.tsx'
+import ProductSearchSelect from '../ProductSearchSelect'
 
 const { Title, Text } = Typography;
 
