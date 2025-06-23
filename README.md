@@ -245,4 +245,4 @@ O Kafka oferece garantias de idempotência para produtores e, em conjunto com ou
         * **Verificação de Duplicatas:** Antes de executar uma operação, verificar se ela já foi realizada usando um ID de idempotência (por exemplo, o `orderId` da mensagem Kafka).
         * **IDs de Idempotência:** Incluir um ID único de idempotência na mensagem ou na requisição, e o sistema receptor usa esse ID para garantir que a operação seja processada apenas uma vez.
 
-Ao combinar a idempotência do produtor do Kafka com a idempotência no nível da aplicação (para as operações de consumidor que modificam estado) e, quando necessário, as transações transacionais do Kafka, você pode alcançar um processamento robusto e sem duplicatas.
+Ao combinar a idempotência do produtor do Kafka com a idempotência no nível da aplicação (para as operações de consumidor que modificam estado) e, quando necessário, as transações transacionais do Kafka, é possível alcançar um processamento robusto e sem duplicatas.
